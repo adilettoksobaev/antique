@@ -5,6 +5,36 @@
 @import 'blocks/**/*'
 @import url('https://fonts.googleapis.com/css2?family=Spectral+SC:wght@400;500;600;700&display=swap')
 
+.preloader
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: white
+    z-index: 99999
+    transition: 1s all
+    opacity: 1
+    visibility: visible
+    .loader
+        width: 75px
+        height: 75px
+        border: 10px double #ddd
+        border-radius: 50%
+        border-top-color: $accent
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+        animation: 1s spin infinite linear
+    &.done
+        opacity: 0
+        visibility: hidden
+@keyframes spin
+    from
+        transform: translate(-50%,-50%) rotate(0deg)
+    to
+        transform: translate(-50%,-50%) rotate(360deg)
 .title
     font-family: 'Spectral SC', serif
     font-style: normal
@@ -42,9 +72,27 @@
     background-position: center
     background-repeat: no-repeat
     background-size: cover
+    background-attachment: fixed
     width: 100%
     min-height: 830px
     position: relative
+    padding-top: 120px
+    &__fixed
+        position: fixed
+        top: 0
+        left: 0
+        z-index: 99
+        width: 100%
+        background-color: transparent
+        transition: all .5s ease
+        &.fixed,
+        &:hover
+            background-color: rgba(255, 255, 255, 0.8)
+            .header__link,
+            .header__phone
+                color: #000
+                &:hover
+                    color: $accent
     &__logo
         font-family: 'Spectral SC', serif
         font-style: normal
@@ -93,6 +141,7 @@
         font-size: 15px
         letter-spacing: 2px
         text-transform: uppercase
+        transition: all .3s ease
     .circle
         width: 197px
         height: 417px
@@ -108,18 +157,23 @@
             bottom: 60px
             background-image: url(../images/src/circle-right.png)
     .icon
-        position: absolute
-        top: 42px
+        position: fixed
+        top: 0
+        bottom: 0
         left: 30px
+        margin: auto
         background-image: url(../images/src/instagram.png)
         width: 32px
         height: 32px
+        z-index: 9
 .about
     min-height: 700px
     display: flex
     align-items: center
     justify-content: space-between
     color: #fff
+    position: relative
+    z-index: 2
     &.delivery
         .title
             font-size: 52px
@@ -399,3 +453,215 @@ footer
         color: $accent
         font-weight: 700
         font-size: 24px
+.menu-mobile
+    display: none
+/*==========  Desktop First  ==========*/
+@media only screen and (max-width: 1200px)
+
+@media only screen and (max-width: 1024px)
+    .about__item:first-child
+        padding-left: 100px
+    .catalog
+        padding-left: 7px
+        padding-right: 7px
+        &__item
+            max-width: 318px
+    .category
+        padding-left: 16px
+        padding-right: 16px
+        .btn
+            margin-top: 16px
+    .category__info
+        flex-wrap: wrap
+    .cat-item
+        max-width: calc(100% - 335px)
+@media only screen and (max-width: 768px)
+    .header__fixed
+        display: none
+    .btn_mnu
+        width: 30px
+        height: 30px
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        background-color: transparent
+        cursor: pointer
+        position: fixed
+        right: 15px
+        top: 12px
+        margin: auto
+        transition: all .5s ease
+        z-index: 999
+        &.active
+            .btn_row
+                &:first-child
+                    transform: rotate(-135deg)
+                    top: 6px
+                &:last-child
+                    -webkit-transform: rotate(-225deg)
+                    -ms-transform: rotate(-225deg)
+                    -o-transform: rotate(-225deg)
+                    transform: rotate(-225deg)
+                    top: -10px
+                &:nth-child(2)
+                    opacity: 0
+    .btn_row
+        height: 2px
+        width: 100%
+        margin: 3px 0
+        background-color: #000
+        position: relative
+        transition: all .5s
+    .sidebar
+        display: none
+    .menu-mobile
+        display: block
+        position: relative
+        &__head
+            display: flex
+            align-items: center
+            position: fixed
+            top: 0
+            left: 0
+            width: 100%
+            background: rgba(255, 255, 255, 0.8)
+            z-index: 99
+        &__content
+            position: fixed
+            top: 0
+            right: -100%
+            max-width: 335px
+            width: 100%
+            background-color: #ffffff
+            transition: all .5s ease
+            height: 100%
+            padding: 16px
+            z-index: 99
+            overflow-y: auto
+            &.open
+                right: 0
+        .sidebar
+            display: block
+            margin-top: 0
+            padding: 0
+            box-shadow: none
+            .title
+                margin-bottom: 16px
+    .header__menu
+        display: block
+    .header__link,
+    .header__phone
+        color: $textcolor
+        padding: 4px 0
+    .menu__bg
+        transition: all .5s ease
+        &.open
+            position: fixed
+            background: #33333373
+            width: 100%
+            height: 100%
+            left: 0
+            top: 0
+    .header__logo
+        padding: 16px
+    .title,
+    .catalog-section .title,
+    .contact-section .title
+        margin-bottom: 30px
+    section
+        padding-top: 30px
+        padding-bottom: 30px
+    .header
+        padding-top: 80px
+        padding-bottom: 30px
+    .about
+        flex-wrap: wrap
+        justify-content: center
+        padding-left: 16px
+        padding-right: 16px
+        text-align: center
+        &__item
+            order: 1
+            max-width: 100%
+            &:first-child
+                order: 2
+                padding-left: 0
+                margin-top: 30px
+    .catalog
+        justify-content: center
+    .company__content
+        margin-left: 0
+        margin-top: 0
+    .category__wrapper,
+    .cat-item
+        max-width: 100%
+@media only screen and (max-width: 480px)
+    .about__item
+        img
+            max-width: 100%
+    .contact-section .title, 
+    .title,
+    .category-head .title,
+    .about.delivery .title
+        font-size: 24px
+        margin-bottom: 20px
+    .catalog
+        padding: 0
+    .catalog__item
+        margin: 21px 16px
+        max-width: 332px
+    .catalog-section .title
+        margin-bottom: 0
+    .company__item
+        max-width: 100%
+    .company__img
+        margin-bottom: 16px
+    .header 
+        min-height: 100vh
+        .icon
+            left: 5px
+    .cat-item, 
+    .category__wrapper
+        padding: 0
+    .category__item
+        padding: 16px
+        flex-wrap: wrap
+    .category__img
+        margin: 0
+        margin-bottom: 16px
+        img
+            max-width: 100%
+            display: block
+            height: auto
+    .category .btn
+        width: 100%
+        text-align: center
+    .cat-item__img,
+    .cat-item__row,
+    .cat-item .category__info
+        margin-bottom: 30px
+    .cat-item__title
+        font-size: 20px
+        margin-bottom: 30px
+    .delivery-section
+        padding-left: 16px
+        padding-right: 16px
+    .cost-card
+        flex-wrap: wrap
+        margin-bottom: 20px
+        &__item
+            margin-bottom: 20px
+/*==========  Mobile First  ==========*/
+
+// ≤576px
++media-breakpoint-up(sm)
+
+// ≤768px
++media-breakpoint-up(md)
+
+// ≤992px
++media-breakpoint-up(lg)
+
+// ≤1200px
++media-breakpoint-up(xl)
