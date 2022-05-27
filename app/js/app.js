@@ -40,5 +40,13 @@ $(function() {
         var aid = $(this).attr("href");
         $('html,body').animate({scrollTop: $(aid).offset().top - 40},'slow');
     });
+
+    $('.sidebar__row li').click(function(){
+        $(this).toggleClass('active');
+        $(this).siblings().removeClass('active'); 
+        $('.dropdown').stop().slideUp();
+        $('.active .dropdown').stop().slideDown();
+        return false;
+    });
     
 });

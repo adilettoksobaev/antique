@@ -142,6 +142,8 @@
         letter-spacing: 2px
         text-transform: uppercase
         transition: all .3s ease
+        cursor: pointer
+        text-decoration: none
     .circle
         width: 197px
         height: 417px
@@ -162,9 +164,9 @@
         bottom: 0
         left: 30px
         margin: auto
-        background-image: url(../images/src/instagram.png)
-        width: 32px
-        height: 32px
+        background-image: url(../images/src/instagram.svg)
+        width: 26px
+        height: 26px
         z-index: 9
 .about
     min-height: 700px
@@ -275,7 +277,18 @@ section
         margin-right: 15px
     &__text
         font-size: 15px
-        line-height: 1.3
+        line-height: 1.2
+    .phone
+        display: block
+        margin-bottom: 5px
+        color: $accent
+        &:hover
+            text-decoration: none
+    .email
+        align-items: center
+        color: $accent
+        &:hover
+            text-decoration: none
 footer
     width: 100%
     min-height: 141px
@@ -322,24 +335,34 @@ footer
     &__list
         list-style: none
         margin-bottom: 15px
+        &:first-child
+            .dropdown
+                display: block
     &__link
         text-transform: uppercase
         font-size: 15px
         color: #3F3F3F
         transition: all .3s ease
-        &:hover
+        &:hover,
+        &.active
             color: $accent
+        &.active
+            font-weight: 600
     .dropdown
         padding: 0
         margin-left: 8px
+        display: none
         &__list
             list-style: inside
         &__link
             font-size: 15px
             color: #3F3F3F
             transition: all .3s ease
-            &:hover
+            &:hover,
+            &.active
                 color: $accent
+            &.active
+                font-weight: 600
 .category
     display: flex
     flex-wrap: wrap
@@ -556,6 +579,7 @@ footer
         padding: 4px 0
     .menu__bg
         transition: all .5s ease
+        z-index: 9
         &.open
             position: fixed
             background: #33333373
@@ -597,9 +621,15 @@ footer
     .cat-item
         max-width: 100%
 @media only screen and (max-width: 480px)
+    body
+        overflow-x: hidden
+    .category-head
+        padding-left: 16px
+        padding-right: 16px
     .about__item
         img
             max-width: 100%
+            margin-left: 30px
     .contact-section .title, 
     .title,
     .category-head .title,
@@ -619,6 +649,7 @@ footer
         margin-bottom: 16px
     .header 
         min-height: 100vh
+        overflow-x: hidden
         .icon
             left: 5px
     .cat-item, 
